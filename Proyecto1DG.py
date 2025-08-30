@@ -2,6 +2,18 @@
 # Proyecto: Agricultura de Precisión - IPC2
 # Estudiante: Dulce Maria Esperanza Gutierrez Caceres
 # Carnet: 202400009
+# Proyecto1DG.py
+# Archivo principal del proyecto
+
+from servicios.manejador_xml import cargar_campos_desde_xml
+from servicios.procesador import procesar_campos
+from servicios.generador_salida import generar_xml_salida
+from servicios.graficador import generar_grafica
+import copy
+
+# mis variables globales
+campos_originales = []  # para gráficas originales 
+campos = []             # para procesar y generar salida
 
 class Menu:
     def __init__(self):
@@ -24,24 +36,37 @@ class Menu:
             self.opcion = int(input("Seleccione una opción (1-6): "))
             return self.opcion
         except ValueError:
-            print("ingrese un número vAlido")
+            print("Ingrese un número válido")
             return -1
 
     def ejecutar_opcion(self):
+        global campos  # esto es necesario para acceder a la variable global
+
         if self.opcion == 1:
             print("Opción 1: Cargar Archivo")
-            # Logica mas ad elante
-            input("Presione Enter para continuar...")
-
+            ruta = input("Ingrese la ruta del archivo: ")
+            nombre = input("Ingrese el nombre del archivo: ")
+            global campos_originales, campos
+            campos_originales = cargar_campos_desde_xml(ruta + "/" + nombre)
+            campos = copy.deepcopy(campos_originales)  # copia profunda para procesar
+            print("Datos cargados. Use la opción 2 para procesar.")
+        
         elif self.opcion == 2:
             print("Opción 2: Procesar Archivo")
-            #Logica
-            input("Presione Enter para continuar...")
+            if not campos_originales:
+                print("No hay datos cargados.")
+            else:
+                campos = procesar_campos(copy.deepcopy(campos_originales))  # pp.rocesa copia profunda
+                print("Procesamiento completado.")
 
         elif self.opcion == 3:
             print("Opción 3: Escribir Archivo de Salida")
-            #Lgica
-            input("Presione Enter para continuar...")
+            if not campos:
+                print("No hay datos procesados.")
+            else:
+                ruta = input("Ingrese la ruta para guardar: ")
+                nombre = input("Ingrese el nombre del archivo de salida: ")
+                generar_xml_salida(campos, ruta, nombre)
 
         elif self.opcion == 4:
             print("Opción 4: Mostrar datos del estudiante")
@@ -54,22 +79,21 @@ class Menu:
             print("Sección: C")
             print("GitHub: https://github.com/DulceGu/IPC2_Proyecto1_202400009.git")
             print("-"*40)
-            input("Presione Enter para continuar...")
 
         elif self.opcion == 5:
             print("Opción 5: Generar gráfica")
-            #Logica
-            input("Presione Enter para continuar...")
+            from servicios.graficador import generar_grafica
+            generar_grafica(campos_originales, campos)
 
         elif self.opcion == 6:
             print("Saliendo del sistema Asdiositooo  =D")
-            return False  # Para salir del bucle
+            return False
 
         else:
-            print("Error Intente de nuevo")
-            input("Presione Enter para continuar...")
+            print("Error. Intente de nuevo.")
 
-        return True  # Seguir en el menú
+        input("Presione Enter para continuar...")
+        return True
 
     def iniciar(self):
         while True:
@@ -82,6 +106,7 @@ class Menu:
                 break
 
 
+# funcionar el programa
 if __name__ == "__main__":
     menu = Menu()
     menu.iniciar()

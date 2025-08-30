@@ -1,0 +1,11 @@
+digraph G {
+    rankdir = "TB";
+    node [shape = none, fontname = "Arial"];
+    
+    titulo [label = "Campo: Campo agrícola 01\nFrecuencia Suelo", fontsize = "18"];
+    
+    matriz [label = <<table border="1" cellborder="1" cellspacing="0" cellpadding="6">
+<tr><td bgcolor="#f0f0f0"><b>Estación\Sensor</b></td><td bgcolor="#e8e8e8"><b>s01</b></td><td bgcolor="#e8e8e8"><b>s02</b></td><td bgcolor="#e8e8e8"><b>s03</b></td></tr><tr><td bgcolor="#e8e8e8"><b>e01</b></td><td bgcolor="#f0d0e4">200</td><td bgcolor="#f0d0e4">300</td><td bgcolor="#ffffff">0</td></tr><tr><td bgcolor="#e8e8e8"><b>e02</b></td><td bgcolor="#ffffff">0</td><td bgcolor="#ffffff">0</td><td bgcolor="#f0d0e4">6000</td></tr><tr><td bgcolor="#e8e8e8"><b>e03</b></td><td bgcolor="#f0d0e4">500</td><td bgcolor="#f0d0e4">8000</td><td bgcolor="#ffffff">0</td></tr><tr><td bgcolor="#e8e8e8"><b>e04</b></td><td bgcolor="#f0d0e4">1500</td><td bgcolor="#ffffff">0</td><td bgcolor="#f0d0e4">1500</td></tr><tr><td bgcolor="#e8e8e8"><b>e05</b></td><td bgcolor="#ffffff">0</td><td bgcolor="#ffffff">0</td><td bgcolor="#f0d0e4">2000</td></tr></table>>, shape = plain];
+    
+    titulo -> matriz [style = invis];
+}

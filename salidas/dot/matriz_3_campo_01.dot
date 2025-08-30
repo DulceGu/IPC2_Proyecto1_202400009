@@ -1,0 +1,11 @@
+digraph G {
+    rankdir = "TB";
+    node [shape = none, fontname = "Arial"];
+    
+    titulo [label = "Campo: Campo agrícola 01\nPatrón Suelo", fontsize = "18"];
+    
+    matriz [label = <<table border="1" cellborder="1" cellspacing="0" cellpadding="6">
+<tr><td bgcolor="#f0f0f0"><b>Estación\Sensor</b></td><td bgcolor="#e8e8e8"><b>s01</b></td><td bgcolor="#e8e8e8"><b>s02</b></td><td bgcolor="#e8e8e8"><b>s03</b></td></tr><tr><td bgcolor="#e8e8e8"><b>e1</b></td><td bgcolor="#f0d0e4">1</td><td bgcolor="#f0d0e4">1</td><td bgcolor="#ffffff">0</td></tr><tr><td bgcolor="#e8e8e8"><b>e2</b></td><td bgcolor="#ffffff">0</td><td bgcolor="#ffffff">0</td><td bgcolor="#f0d0e4">1</td></tr><tr><td bgcolor="#e8e8e8"><b>e3</b></td><td bgcolor="#f0d0e4">1</td><td bgcolor="#ffffff">0</td><td bgcolor="#f0d0e4">1</td></tr></table>>, shape = plain];
+    
+    titulo -> matriz [style = invis];
+}
